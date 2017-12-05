@@ -1,0 +1,21 @@
+{
+  "team1" : {
+    "player1": {
+      "name": "Carsten"
+    },
+    "player2": {
+      "name": "Phong"
+    }
+  },
+  "team2": {
+    "player1": {
+      "name": "Marcel"
+    },
+    "player2": {
+      "name": "Peter"
+    }
+  },
+  "score1": 10,
+  "score2": 5,
+  "datum": "2017-12-05T15:30:33.000"
+}
