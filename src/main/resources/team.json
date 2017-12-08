@@ -1,8 +1,10 @@
 {
   "player1": {
-    "name": "carsten"
+    "_id": "5a2abeae7141171b6cc4af2a",
+    "name": "Carsten"
   },
   "player2": {
-    "name": "phong"
+    "_id": "5a2abeae7141171b6cc4af2b",
+    "name": "Phong"
   }
 }

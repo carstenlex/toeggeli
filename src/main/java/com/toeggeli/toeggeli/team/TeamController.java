@@ -1,8 +1,11 @@
 package com.toeggeli.toeggeli.team;
 
 import com.toeggeli.toeggeli.player.Player;
+import com.toeggeli.toeggeli.player.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -19,6 +22,9 @@ public class TeamController {
     @Autowired
     TeamRepository teamRepository;
 
+    @Autowired
+    PlayerRepository playerRepository;
+
     @GetMapping
     public Flux<Team> listTeams() {
         return teamRepository.findAll();
@@ -26,27 +32,21 @@ public class TeamController {
 
 
     @PostMapping
-    public Mono<Team> saveTeam(@RequestBody Team team) {
-        return teamRepository.save(team);
-    }
-
-
-    @GetMapping("/generatedata")
-    public ResponseEntity generateDate() {
-        List<Player> players1 = Arrays.asList("Carsten","Phong","Peter","Ueli","Marcel","Rene","Lars").stream().map(Player::new).collect(Collectors.toList());
-        List<Player> players2 = players1;
-
-        List<Team> teams = new ArrayList<>();
-        for(Player p1: players1) {
-            for (Player p2: players2){
-                if (p1.getName().equalsIgnoreCase(p2.getName())){
-                    continue;
-                }
-                Team team = new Team(p1,p2);
-                teams.add(team);
-            }
+    public ResponseEntity saveTeam(@RequestBody Team team) {
+        if (team == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Kein Team angegeben");
         }
-        Flux<Team> teamFlux = teamRepository.saveAll(teams);
-        return ResponseEntity.ok(teamFlux);
+        if (team.getPlayer1() == null || team.getPlayer2() == null ){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Player1 und/oder Player2 fehlen");
+        }
+        if (team.getPlayer1().getId() == null || team.getPlayer2().getId() == null ){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Player1 und/oder Player2 müssen bereits existieren");
+        }
+
+
+        return ResponseEntity.ok(teamRepository.save(team));
     }
+
+
+
 }

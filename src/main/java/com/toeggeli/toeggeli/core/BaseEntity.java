@@ -1,5 +1,6 @@
 package com.toeggeli.toeggeli.core;
 
+import com.fasterxml.jackson.annotation.JsonSetter;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
@@ -8,7 +9,11 @@ import org.springframework.data.annotation.Id;
 @NoArgsConstructor
 public abstract class BaseEntity {
     @Id
-    private String id;
+    protected String id;
 
 
+    @JsonSetter("_id")
+    public void setMongoId(String _id) {
+        this.id = _id;
+    }
 }
