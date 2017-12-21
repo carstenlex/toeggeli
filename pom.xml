@@ -24,6 +24,7 @@
 		<java.version>1.8</java.version>
 	</properties>
 
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -80,7 +81,26 @@
 				<enabled>false</enabled>
 			</snapshots>
 		</repository>
-	</repositories>
+
+        <!-- RCH intern -->
+        <repository>
+            <id>spring-snapshots-rch</id>
+            <name>Spring Snapshots</name>
+            <url>http://rchrepository:8080/nexus/content/repositories/SpringIOSnapshot/</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>spring-milestones-rch</id>
+            <name>Spring Milestones</name>
+            <url>http://rchrepository:8080/nexus/content/repositories/SpringIOMilestone/</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+
+    </repositories>
 
 	<pluginRepositories>
 		<pluginRepository>
@@ -99,7 +119,24 @@
 				<enabled>false</enabled>
 			</snapshots>
 		</pluginRepository>
-	</pluginRepositories>
+        <pluginRepository>
+            <id>spring-snapshots-rch</id>
+            <name>Spring Snapshots</name>
+            <url>http://rchrepository:8080/nexus/content/repositories/SpringIOSnapshot/</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+        <pluginRepository>
+            <id>spring-milestones-rch</id>
+            <name>Spring Milestones</name>
+            <url>http://rchrepository:8080/nexus/content/repositories/SpringIOMilestone/</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+
+    </pluginRepositories>
 
 
 </project>

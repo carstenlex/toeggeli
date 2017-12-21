@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import reactor.core.scheduler.Scheduler;
+
+import java.time.LocalDateTime;
 
 @CrossOrigin
 @RequestMapping("/match")
@@ -42,9 +45,20 @@ public class MatchController {
         Team team2 = findOrCreateTeamBLOCKED(match.getTeam2());
         match.setTeam2(team2);
         match.setTeam1(team1);
+        match.setDatum(LocalDateTime.now());
         Mono<Match> save = matchRepository.save(match);
         return save;
 
+    }
+
+
+    public Mono<Match> saveMatchReactive(@RequestBody Match match) {
+        Scheduler scheduler = null; //FIXME hier den lookup in der DB suchen
+        Flux<Team> lookedUpTeams = Flux.just(match.getTeam1(), match.getTeam2())
+                .flatMap(team -> Flux.just(team).subscribeOn(scheduler));
+
+//        lookedUpTeams.
+        return Mono.just(null);
     }
 
     private Team findOrCreateTeamBLOCKED(Team team) {
