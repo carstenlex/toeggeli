@@ -4,7 +4,7 @@ import com.toeggeli.toeggeli.team.Team;
 import lombok.Data;
 
 @Data
-public class ValueObject {
+public class FromDBTeamStatistik {
 
     private Team id;
     private WinLoss value;
@@ -13,11 +13,6 @@ public class ValueObject {
 
     @Override
     public String toString() {
-        return "ValueObject [id=" + id + ", value=" + value + "]";
+        return "FromDBTeamStatistik [id=" + id + ", value=" + value + "]";
     }
-}
-
-class WinLoss {
-    int win, loss;
-
 }

@@ -20,7 +20,7 @@ public class Statistik {
         this.losses = losses;
     }
 
-    public Statistik(long wins, long losses, Player player) {
+    public Statistik(Player player, long wins, long losses ) {
         this.wins = wins;
         this.losses = losses;
         this.player = player;

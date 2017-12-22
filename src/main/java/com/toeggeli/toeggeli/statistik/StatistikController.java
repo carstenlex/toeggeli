@@ -24,4 +24,13 @@ public class StatistikController {
         List<Statistik> statistiks = statistikRepository.loadTeamStatistik();
         return statistiks;
     }
+
+    @GetMapping("/ranking/player")
+    public List<Statistik> getStatistikPlayer() {
+        List<Statistik> statistiks = statistikRepository.loadPlayerStatistik();
+        return statistiks;
+    }
+
+
+
 }

@@ -17,7 +17,16 @@ public class StatistikRepository {
 
 
     public List<Statistik> loadTeamStatistik(){
-        MapReduceResults<ValueObject> teamStatistik = mongoOperations.mapReduce("matches", "classpath:matchesMapFunction.js", "classpath:matchesReduceFunction.js", ValueObject.class);
+        MapReduceResults<FromDBTeamStatistik> teamStatistik = mongoOperations.mapReduce("matches", "classpath:teamStatistikMapFunction.js", "classpath:teamStatistikReduceFunction.js", FromDBTeamStatistik.class);
+
+        return StreamSupport.stream(teamStatistik.spliterator(),false)
+                .map(stat -> new Statistik(stat.getId(),stat.getValue().win,stat.getValue().loss))
+                .collect(Collectors.toList());
+
+    }
+
+    public List<Statistik> loadPlayerStatistik() {
+        MapReduceResults<FromDBPlayerStatistik> teamStatistik = mongoOperations.mapReduce("matches", "classpath:playerStatistikMapFunction.js", "classpath:playerStatistikReduceFunction.js", FromDBPlayerStatistik.class);
 
         return StreamSupport.stream(teamStatistik.spliterator(),false)
                 .map(stat -> new Statistik(stat.getId(),stat.getValue().win,stat.getValue().loss))
