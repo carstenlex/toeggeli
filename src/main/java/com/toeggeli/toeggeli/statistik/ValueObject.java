@@ -18,6 +18,6 @@ public class ValueObject {
 }
 
 class WinLoss {
-    int wins, loss;
+    int win, loss;
 
 }

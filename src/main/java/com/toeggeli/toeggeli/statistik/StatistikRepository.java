@@ -17,10 +17,10 @@ public class StatistikRepository {
 
 
     public List<Statistik> loadTeamStatistik(){
-        MapReduceResults<ValueObject> matches = mongoOperations.mapReduce("matches", "classpath:matchesMapFunction.js", "classpath:matchesReduceFunction.js", ValueObject.class);
+        MapReduceResults<ValueObject> teamStatistik = mongoOperations.mapReduce("matches", "classpath:matchesMapFunction.js", "classpath:matchesReduceFunction.js", ValueObject.class);
 
-        return StreamSupport.stream(matches.spliterator(),false)
-                .map(stat -> new Statistik(stat.getId(),stat.getValue().wins,stat.getValue().loss))
+        return StreamSupport.stream(teamStatistik.spliterator(),false)
+                .map(stat -> new Statistik(stat.getId(),stat.getValue().win,stat.getValue().loss))
                 .collect(Collectors.toList());
 
     }
