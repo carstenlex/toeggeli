@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.1.0 http://maven.apache.org/xsd/settings-1.1.0.xsd"
+          xmlns="http://maven.apache.org/SETTINGS/1.1.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <!--
+        <localRepository>d:/local-repository</localRepository>
+    -->
+    <proxies>
+        <!-- proxy>
+            <active>false</active>
+            <protocol>http</protocol>
+            <host></host>
+            <port></port>
+            <nonProxyHosts>local.net|some.host.com</nonProxyHosts>
+        </proxy -->
+    </proxies>
+
+
+    <profiles>
+        <profile>
+            <id>raiffeisen</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <repositories>
+                <repository>
+                    <id>seuj-group</id>
+                    <name>SEU-Java-Group</name>
+                    <url>http://rchrepository.service.raiffeisen.ch:8080/nexus/content/groups/SEU_JAVA_PROD/</url>
+                </repository>
+            </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>SEUJ</id>
+                    <url>http://rchrepository.service.raiffeisen.ch:8080/nexus/content/repositories/SEU_JAVA_PROD/</url>
+                </pluginRepository>
+            </pluginRepositories>
+        </profile>
+    </profiles>
+    <activeProfiles>
+        <activeProfile>raiffeisen</activeProfile>
+    </activeProfiles>
+</settings>
