@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Route
+metadata:
+  annotations:
+    openshift.io/generated-by: OpenShiftWebConsole
+    openshift.io/host.generated: "true"
+  creationTimestamp: null
+  labels:
+    app: toeggeliservice
+  name: toeggeliservice
+spec:
+  host: toeggeliservice.router.default.svc.cluster.local
+  port:
+    targetPort: 8080-tcp
+  to:
+    kind: Service
+    name: toeggeliservice
+    weight: 100
+  wildcardPolicy: None

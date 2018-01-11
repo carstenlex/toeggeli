@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: BuildConfig
+metadata:
+  name: toeggeliservice
+  labels:
+    app: toeggeliservice
+spec:
+  runPolicy: Serial
+  source:
+    type: Git
+    git:
+      uri: http://tfs-prod1.service.raiffeisen.ch:8080/tfs/RCH/AP.Trading_ZB_Systeme/_git/toeggeli-service
+      ref: master
+    sourceSecret:
+      name: rch-git-basic-auth
+  strategy:
+    type: Source
+    sourceStrategy:
+      env:
+      - name: MAVEN_ARGS
+        value: >-
+            -e -Popenshift  -B
+            -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
+            -DskipTests -Dcom.redhat.xpaas.repo.redhatga -Dfabric8.skip=true
+            clean package
+      from:
+        kind: ImageStreamTag
+        namespace: openshift
+        name: 'redhat-openjdk18-openshift:latest'
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'toeggeliservice:latest'
+  resources:
+    limits:
+      cpu: 1
+      memory: 1G
+    requests:
+      cpu: 500m
+      memory: 500M
+  nodeSelector: null
