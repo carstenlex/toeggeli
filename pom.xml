@@ -86,7 +86,7 @@
         <repository>
             <id>spring-snapshots-rch</id>
             <name>Spring Snapshots</name>
-            <url>http://rchrepository:8080/nexus/content/repositories/SpringIOSnapshot/</url>
+            <url>http://rchrepository.service.raiffeisen.ch:8080/nexus/content/repositories/SpringIOSnapshot/</url>
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>
@@ -94,7 +94,7 @@
         <repository>
             <id>spring-milestones-rch</id>
             <name>Spring Milestones</name>
-            <url>http://rchrepository:8080/nexus/content/repositories/SpringIOMilestone/</url>
+            <url>http://rchrepository.service.raiffeisen.ch:8080/nexus/content/repositories/SpringIOMilestone/</url>
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
