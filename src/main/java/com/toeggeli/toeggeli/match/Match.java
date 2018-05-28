@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Data
 @NoArgsConstructor
@@ -15,5 +16,5 @@ public class Match extends BaseEntity{
     private Team team1;
     private Team team2;
     private int score1, score2;
-    private LocalDateTime datum;
+    private Date datum;
 }

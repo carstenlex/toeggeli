@@ -9,6 +9,7 @@ import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Scheduler;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @CrossOrigin
 @RequestMapping("/match")
@@ -45,7 +46,7 @@ public class MatchController {
         Team team2 = findOrCreateTeamBLOCKED(match.getTeam2());
         match.setTeam2(team2);
         match.setTeam1(team1);
-        match.setDatum(LocalDateTime.now());
+        match.setDatum(new Date());
         Mono<Match> save = matchRepository.save(match);
         return save;
 
