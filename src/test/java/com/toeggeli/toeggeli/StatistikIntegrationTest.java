@@ -63,7 +63,7 @@ public class StatistikIntegrationTest {
 
         teams.stream().filter(team -> !team.equals(lexcPenc) && lexcPenc.distinct(team)).forEach(loser -> {
             Match m = new Match();
-            m.setDatum(LocalDateTime.now());
+            m.setDatum(new Date());
             m.setTeam1(lexcPenc);
             m.setTeam2(loser);
             m.setScore1(10);
